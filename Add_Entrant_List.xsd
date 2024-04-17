@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+	<xs:element name="EntrantChoice">
+	 <xs:complexType>
+		<xs:choice>
+		   <xs:element type="UidType" name="Guid">
+			  <xs:annotation>
+				 <xs:documentation>Использовать существующий профиль поступающего. Уникальный идентификатор сгенерированный Сервисом приема</xs:documentation>
+			  </xs:annotation>
+		   </xs:element>
+		   <xs:element name="AddEntrant">
+			  <xs:annotation>
+				 <xs:documentation>Создать новый профиль поступающего, т.к. нет такого</xs:documentation>
+			  </xs:annotation>
+			  <xs:complexType>
+				 <xs:all>
+					<xs:element name="Identification">
+					   <xs:annotation>
+						  <xs:documentation>Документ удостоверяющий личность. ФИО, указанные в нем, будут считаться ФИО поступающего. ДУЛ будет считаться подтвержденным вузом</xs:documentation>
+					   </xs:annotation>
+					   <xs:complexType>
+						  <xs:all>
+							 <xs:element type="xs:positiveInteger" name="IdDocumentType">
+								<xs:annotation>
+								   <xs:documentation>Тип документа. Идентификатор классификатора DocumentTypeCls</xs:documentation>
+								</xs:annotation>
+							 </xs:element>
+							 <xs:element type="String255Type" name="DocName">
+								<xs:annotation>
+								   <xs:documentation>Наименование документа</xs:documentation>
+								</xs:annotation>
+							 </xs:element>
+							 <xs:element type="String20Type" name="DocSeries" minOccurs="0">
+								<xs:annotation>
+								   <xs:documentation>Серия ДУЛ</xs:documentation>
+								</xs:annotation>
+							 </xs:element>
+							 <xs:element type="String50Type" name="DocNumber">
+								<xs:annotation>
+								   <xs:documentation>Номер ДУЛ</xs:documentation>
+								</xs:annotation>
+							 </xs:element>
+							 <xs:element type="xs:date" name="IssueDate">
+								<xs:annotation>
+								   <xs:documentation>Дата выдачи. Шаблон "2006-01-02"</xs:documentation>
+								</xs:annotation>
+							 </xs:element>
+							 <xs:element type="String500Type" name="DocOrganization">
+								<xs:annotation>
+								   <xs:documentation>Огранизация, выдавшая документ</xs:documentation>
+								</xs:annotation>
+							 </xs:element>
+							 <xs:element name="Fields" minOccurs="0">
+								<xs:annotation>
+								   <xs:documentation>Реквизиты, в зависимости от типа документа</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+								   <xs:sequence>
+									  <xs:any maxOccurs="unbounded" namespace="##any" processContents="skip" />
+								   </xs:sequence>
+								</xs:complexType>
+							 </xs:element>
+						  </xs:all>
+					   </xs:complexType>
+					</xs:element>
+					<xs:element type="SnilsType" name="Snils" minOccurs="0">
+					   <xs:annotation>
+						  <xs:documentation>СНИЛС - обязательный для граждан РФ</xs:documentation>
+					   </xs:annotation>
+					</xs:element>
+					<xs:element type="xs:positiveInteger" name="IdGender">
+					   <xs:annotation>
+						  <xs:documentation>Идентификатор классификатора GenderCls</xs:documentation>
+					   </xs:annotation>
+					</xs:element>
+					<xs:element type="xs:date" name="Birthday">
+					   <xs:annotation>
+						  <xs:documentation>Дата рождения. Шаблон "2006-01-02"</xs:documentation>
+					   </xs:annotation>
+					</xs:element>
+					<xs:element type="String500Type" name="Birthplace">
+					   <xs:annotation>
+						  <xs:documentation>Место рождения</xs:documentation>
+					   </xs:annotation>
+					</xs:element>
+					<xs:element type="String120Type" name="Phone" minOccurs="0">
+					   <xs:annotation>
+						  <xs:documentation>Телефон</xs:documentation>
+					   </xs:annotation>
+					</xs:element>
+					<xs:element type="String150Type" name="Email" minOccurs="0">
+					   <xs:annotation>
+						  <xs:documentation>Электронный адрес</xs:documentation>
+					   </xs:annotation>
+					</xs:element>
+					<xs:element type="xs:positiveInteger" name="IdOksm">
+					   <xs:annotation>
+						  <xs:documentation>Гражданство - Идентификатор классификатора OksmCls</xs:documentation>
+					   </xs:annotation>
+					</xs:element>
+					<xs:element name="FreeEducationReason" minOccurs="0">
+					   <xs:complexType>
+						  <xs:all>
+							 <xs:element type="xs:positiveInteger" name="IdFreeEducationReason">
+								<xs:annotation>
+								   <xs:documentation>Основания для получения бесплатного образования (для иностранца). Идентификатор классификатора FreeEducationReasonCls</xs:documentation>
+								</xs:annotation>
+							 </xs:element>
+							 <xs:element type="xs:positiveInteger" name="IdOksmFreeEducationReason" minOccurs="0">
+								<xs:annotation>
+								   <xs:documentation>Идентификатор классификатора OkcmCls. Если IdFreeEducationReason = "Международный договор", то передается страна, с которой заключен договор</xs:documentation>
+								</xs:annotation>
+							 </xs:element>
+						  </xs:all>
+					   </xs:complexType>
+					</xs:element>
+					<xs:element name="AddressList">
+					   <xs:annotation>
+						  <xs:documentation>Список адресов абирутиента</xs:documentation>
+					   </xs:annotation>
+					   <xs:complexType>
+						  <xs:sequence>
+							 <xs:element name="Address" maxOccurs="unbounded">
+								<xs:annotation>
+								   <xs:documentation>Адрес</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+								   <xs:all>
+									  <xs:element type="xs:boolean" name="IsRegistration">
+										 <xs:annotation>
+											<xs:documentation>Является ли данный адрес регистрацией поступающего</xs:documentation>
+										 </xs:annotation>
+									  </xs:element>
+									  <xs:element type="String1024Type" name="FullAddr">
+										 <xs:annotation>
+											<xs:documentation>Полный адрес</xs:documentation>
+										 </xs:annotation>
+									  </xs:element>
+									  <xs:element type="xs:positiveInteger" name="IdRegion">
+										 <xs:annotation>
+											<xs:documentation>Идентификатор классификатора RegionCls</xs:documentation>
+										 </xs:annotation>
+									  </xs:element>
+									  <xs:element type="String255Type" name="City">
+										 <xs:annotation>
+											<xs:documentation>Населенный пункт</xs:documentation>
+										 </xs:annotation>
+									  </xs:element>
+								   </xs:all>
+								</xs:complexType>
+							 </xs:element>
+						  </xs:sequence>
+					   </xs:complexType>
+					</xs:element>
+				 </xs:all>
+			  </xs:complexType>
+		   </xs:element>
+		</xs:choice>
+	 </xs:complexType>
+	</xs:element>
+   <xs:simpleType name="String9Type">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="9" />
+         <xs:minLength value="1" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="String13Type">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="13" />
+         <xs:minLength value="1" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="SnilsType">
+      <xs:annotation>
+         <xs:documentation>СНИЛС</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:length value="11" />
+         <xs:pattern value="\d{11}" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="UidType">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="36" />
+         <xs:minLength value="10" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="String20Type">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="20" />
+         <xs:minLength value="1" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="String50Type">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="50" />
+         <xs:minLength value="1" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="String120Type">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="120" />
+         <xs:minLength value="1" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="String150Type">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="150" />
+         <xs:minLength value="1" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="String255Type">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="255" />
+         <xs:minLength value="1" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="String500Type">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="500" />
+         <xs:minLength value="1" />
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="String1024Type">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="1024" />
+         <xs:minLength value="1" />
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
