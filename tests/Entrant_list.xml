@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntrantChoice>
+<AddEntrant>
+<AddressList>
+<Address>
+<City>STR</City>
+<FullAddr>STR</FullAddr>
+<IdRegion>STR</IdRegion>
+<IsRegistration>STR</IsRegistration>
+</Address>
+</AddressList>
+<Birthday>Wed Apr 17 09:08:23 UTC 2024</Birthday>
+<Birthplace>STR</Birthplace>
+<Email>STR</Email>
+<FreeEducationReason>
+<IdFreeEducationReason>STR</IdFreeEducationReason>
+<IdOksmFreeEducationReason>STR</IdOksmFreeEducationReason>
+</FreeEducationReason>
+<IdGender>STR</IdGender>
+<IdOksm>STR</IdOksm>
+<Identification>
+<DocName>STR</DocName>
+<DocNumber>STR</DocNumber>
+<DocOrganization>STR</DocOrganization>
+<DocSeries>STR</DocSeries>
+<Fields>
+    <SubdivisionCode>1</SubdivisionCode>
+    <IdOksm>2</IdOksm>
+    <Surname>3</Surname>
+    <Name>4</Name>
+    <Patronymic>5</Patronymic>
+    <ExpirationDate>6</ExpirationDate>
+</Fields>
+<IdDocumentType>100043</IdDocumentType>
+<IssueDate>Wed Apr 17 09:08:23 UTC 2024</IssueDate>
+</Identification>
+<Phone>STR</Phone>
+<Snils>STR</Snils>
+</AddEntrant>
+<Guid>STR</Guid>
+</EntrantChoice>
